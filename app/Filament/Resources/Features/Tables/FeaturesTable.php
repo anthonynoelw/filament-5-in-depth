@@ -18,7 +18,9 @@ class FeaturesTable
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('status')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable()
+                    ->badge(),
                 TextColumn::make('type')
                     ->searchable(),
                 TextColumn::make('effort_in_days')
