@@ -3,11 +3,15 @@
 namespace App\Filament\Resources\Features\Schemas;
 
 use App\Enums\Feature\FeatureStatus;
+use App\Enums\FeatureType;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Slider;
+use Filament\Forms\Components\Slider\Enums\PipsMode;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\ToggleButtons;
 use Filament\Schemas\Schema;
 
 class FeatureForm
@@ -23,21 +27,29 @@ class FeatureForm
                     ->enum(FeatureStatus::class)
                     ->searchable()
                     ->required()
-                    ->default('Proposed'),
-                TextInput::make('type')
+                    ->default(FeatureStatus::Proposed->value),
+                ToggleButtons::make('type')
+                    ->options(FeatureType::class)
+                    ->enum(FeatureType::class)
+                    ->inline()
+                    ->hiddenLabel()
                     ->required()
-                    ->default('Feature'),
-                Textarea::make('description')
+                    ->default(FeatureType::Feature->value),
+                RichEditor::make('description')
                     ->required()
                     ->columnSpanFull(),
                 TextInput::make('effort_in_days')
                     ->required()
                     ->numeric()
                     ->default(0),
-                TextInput::make('priority')
+                Slider::make('priority')
                     ->required()
-                    ->numeric()
-                    ->default(0),
+                    ->minValue(1)
+                    ->maxValue(10)
+                    ->pips(PipsMode::Steps)
+                    ->step(1)
+                    ->fillTrack()
+                    ->default(5),
                 TextInput::make('cost')
                     ->required()
                     ->numeric()
