@@ -35,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
             ->profile(EditProfile::class, isSimple: false)
             ->emailVerification()
             ->emailChangeVerification()
+            ->strictAuthorization()
             ->login()
             ->colors([
                 'primary' => Color::convertToOklch('#4397cb'),
