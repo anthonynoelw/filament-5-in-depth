@@ -16,12 +16,14 @@ class FeaturesTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('status')
                     ->searchable()
                     ->sortable()
                     ->badge(),
                 TextColumn::make('type')
+                    ->sortable()
                     ->searchable(),
                 TextColumn::make('effort_in_days')
                     ->numeric()

@@ -18,7 +18,7 @@ class EditProfile extends \Filament\Auth\Pages\EditProfile
                     $this->getNameFormComponent(),
                     $this->getEmailFormComponent(),
                     TextInput::make('phone')
-                    ->tel()
+                    ->tel() 
                     ->minLength(14)
                     ->maxLength(14)
                     ->prefixIcon('heroicon-o-phone')
