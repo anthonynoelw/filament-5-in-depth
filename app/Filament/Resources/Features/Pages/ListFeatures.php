@@ -15,10 +15,6 @@ class ListFeatures extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Action::make('test')->action(function () {
-                dd('test');
-            })
-            ->authorize(Gate::allows('test', FeatureResource::getModel())),
             CreateAction::make(),
         ];
     }
