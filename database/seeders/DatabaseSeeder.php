@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Feature;
+use App\Models\Milestone;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,9 +21,13 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'admin@mail.com',
         ]);
 
-        Feature::factory(10)->create();
+        Feature::factory(10)->create()->each(function ($feature) {
+            $feature->Milestones()->createMany(
+                Milestone::factory(3)->make()->toArray()
+            );
+        });
     }
 }
